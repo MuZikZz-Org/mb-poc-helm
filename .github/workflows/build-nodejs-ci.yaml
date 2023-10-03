@@ -118,20 +118,20 @@ jobs:
     secrets: #inherit
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
   
-  Git_tag:
-    needs: Build_Docker_ACR
-    name: "Pushing git tag"
-    uses: MuZikZz-Org/action-workflow/.github/workflows/git-push-tag.yaml@main
-    with:
-      APP_VERSION: ${{ needs.Build_Docker_ACR.outputs.PACKAGE_VERSION }}
+  # Git_tag:
+  #   needs: Build_Docker_ACR
+  #   name: "Pushing git tag"
+  #   uses: MuZikZz-Org/action-workflow/.github/workflows/git-push-tag.yaml@main
+  #   with:
+  #     APP_VERSION: ${{ needs.Build_Docker_ACR.outputs.PACKAGE_VERSION }}
       
-  Create_PR:
-    needs: Deploy_helm
-    name: create pull reauest to main branch
-    uses: MuZikZz-Org/action-workflow/.github/workflows/create-pullrequest.yaml@main
-    with:
-      SourceCodeRepo:  ${{ github.repository }}
-      SourceCodeBranch: ${{github.ref_name}}
+  # Create_PR:
+  #   needs: Deploy_helm
+  #   name: create pull reauest to main branch
+  #   uses: MuZikZz-Org/action-workflow/.github/workflows/create-pullrequest.yaml@main
+  #   with:
+  #     SourceCodeRepo:  ${{ github.repository }}
+  #     SourceCodeBranch: ${{github.ref_name}}
 
   # Clean_namespace:
   #   needs: [env_workflow,Create_PR]
