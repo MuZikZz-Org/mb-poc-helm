@@ -61,13 +61,13 @@ jobs:
     name: Package versioning
     uses: MuZikZz-Org/action-workflow/.github/workflows/package-versioning.yaml@main
 
-  OUTPUT_PackageVersioning:
-    runs-on: runner-utility
-    needs: Package_Versioning
-    steps:
-      - name: Display Package Version
-        run: |
-          echo "Package Output form Workflow PackageVersioning ${{ needs.Package_Versioning.outputs.PACKAGE_VERSION }}"
+  # OUTPUT_PackageVersioning:
+  #   runs-on: runner-utility
+  #   needs: Package_Versioning
+  #   steps:
+  #     - name: Display Package Version
+  #       run: |
+  #         echo "Package Output form Workflow PackageVersioning ${{ needs.Package_Versioning.outputs.PACKAGE_VERSION }}"
   
   Build_Docker_ACR:
     needs: env_workflow
@@ -80,12 +80,12 @@ jobs:
     secrets: #inherit # pass all secrets into reuse-workflow
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
       
-  TEST_CALL_OUTPUT:
-    runs-on: runner-utility
-    needs: Build_Docker_ACR
-    steps:
-      - run: |
-          echo ${{ needs.Build_Docker_ACR.outputs.PACKAGE_VERSION }}
+  # TEST_CALL_OUTPUT:
+  #   runs-on: runner-utility
+  #   needs: Build_Docker_ACR
+  #   steps:
+  #     - run: |
+  #         echo ${{ needs.Build_Docker_ACR.outputs.PACKAGE_VERSION }}
     
   Helm_Build_Chart: 
     needs: [env_workflow,Build_Docker_ACR]
