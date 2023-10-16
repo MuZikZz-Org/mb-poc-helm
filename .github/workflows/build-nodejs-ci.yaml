@@ -127,7 +127,7 @@ jobs:
       
   # Create_PR:
   #   needs: Deploy_helm
-  #   name: create pull reauest to main branch
+  #   name: create pull request to main branch
   #   uses: MuZikZz-Org/action-workflow/.github/workflows/create-pullrequest.yaml@main
   #   with:
   #     SourceCodeRepo:  ${{ github.repository }}
